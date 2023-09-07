@@ -41,6 +41,7 @@ npm-debug.log
 yarn-error.log
 ios
 android
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
@@ -65,3 +66,6 @@ android
 
 # testing
 /coverage
+
+# tailwind
+output.css
