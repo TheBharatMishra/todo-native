@@ -67,5 +67,6 @@ android
 # testing
 /coverage
 
-# tailwind
-output.css
+# others
+.vscode
+.static
