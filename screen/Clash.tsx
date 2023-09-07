@@ -10,7 +10,12 @@ export default function Clash({navigation}: any): JSX.Element {
       </Text>
       <TouchableHighlight
         style={s`p-4 m-2 bg-black w-1/4 flex justify-center items-center rounded-lg`}
-        onPress={() => navigation.replace('Splash')}>
+        onPress={() =>
+          navigation.replace('Splash', {
+            ItemName: 'Lali lelo aani lelo',
+            ItemID: 69,
+          })
+        }>
         <Text style={s`text-yellow-500 font-bold`}>Click me</Text>
       </TouchableHighlight>
     </View>

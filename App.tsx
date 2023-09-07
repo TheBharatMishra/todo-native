@@ -32,7 +32,11 @@ function Section({navigation}: any): JSX.Element {
       <Button
         color={'pink'}
         title="Go to Clash"
-        onPress={() => navigation.replace('Clash', {name: 'Clash'})}
+        onPress={() =>
+          navigation.replace('Clash', {
+            name: 'Clash',
+          })
+        }
       />
     </View>
   );

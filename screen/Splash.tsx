@@ -8,10 +8,11 @@ import {
 } from 'react-native';
 import {s} from 'react-native-wind';
 
-const Splash = ({navigation}: any) => {
+const Splash = ({navigation, route}: any) => {
+  const {ItemName, ItemID} = route.params;
   setTimeout(() => {
     navigation.navigate('Section', {name: 'Section'});
-  }, 2000);
+  }, 10000);
   return (
     <View style={s`bg-yellow-500 h-full`}>
       <Text
@@ -24,7 +25,13 @@ const Splash = ({navigation}: any) => {
       </Text>
       <TouchableHighlight
         onPress={() => navigation.replace('Section', {name: 'Section'})}>
-        <Image style={s`w-full h-screen`} source={require('./doom.jpg')} />
+        <View>
+          <Text style={s`text-5xl flex-8 `}>This is shuffle gang Member:</Text>
+          <Text style={s`text-5xl flex-8 `}>
+            {ItemName} {ItemID}
+          </Text>
+          <Image style={s`w-full`} source={require('./doom.jpg')} />
+        </View>
       </TouchableHighlight>
     </View>
   );
