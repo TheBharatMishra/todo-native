@@ -6,114 +6,67 @@
  */
 
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {Splash} from './screen/Splash';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {s} from 'react-native-wind';
+import {SafeAreaView, Text, View, Button} from 'react-native';
+import Clash from './screen/Clash';
+import Splash from './screen/Splash';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+// type SectionProps = PropsWithChildren<{
+//   title: string;
+// }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createNativeStackNavigator();
+
+function Section({navigation}: any): JSX.Element {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={s`bg-yellow-500 h-full`}>
+      <Text style={s`text-xl text-white dark:text-white `}>Hellow</Text>
+      <Button
+        color={'red'}
+        title="Go to Splash"
+        onPress={() => navigation.replace('Splash', {name: 'Splash'})}
+      />
+      <Button
+        color={'pink'}
+        title="Go to Clash"
+        onPress={() => navigation.replace('Clash', {name: 'Clash'})}
+      />
     </View>
   );
 }
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Yo <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Splash />
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Section"
+          component={Section}
+          options={{animation: 'fade'}}
+        />
+        <Stack.Screen
+          options={{header: () => null, animation: 'slide_from_left'}}
+          name="Splash"
+          component={Splash}
+        />
+        <Stack.Screen
+          options={{header: () => null, animation: 'slide_from_bottom'}}
+          name="Clash"
+          component={Clash}
+        />
+        {/* 
+        <SafeAreaView style={s``}>
+          <View>
+            <Splash />
+            {/* <Section /> */}
+        {/* </View> */}
+        {/* </SafeAreaView> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
