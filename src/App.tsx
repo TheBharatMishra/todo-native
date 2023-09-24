@@ -10,7 +10,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import type {PropsWithChildren} from 'react';
 import {s} from 'react-native-wind';
 import {SafeAreaView, Text, View, Button} from 'react-native';
-import Clash from './screen/Clash';
+import Home from './screen/Home';
+import Login from './screen/Login';
 import Splash from './screen/Splash';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -33,8 +34,8 @@ function Section({navigation}: any): JSX.Element {
         color={'pink'}
         title="Go to Clash"
         onPress={() =>
-          navigation.replace('Clash', {
-            name: 'Clash',
+          navigation.replace('Home', {
+            name: 'Home',
           })
         }
       />
@@ -45,21 +46,26 @@ function Section({navigation}: any): JSX.Element {
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
+          options={{header: () => null, animation: 'slide_from_bottom'}}
+          name="Home"
+          component={Home}
+        />
+        {/* <Stack.Screen
           name="Section"
           component={Section}
           options={{animation: 'default'}}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           options={{header: () => null, animation: 'slide_from_left'}}
           name="Splash"
           component={Splash}
-        />
+        /> */}
         <Stack.Screen
-          options={{header: () => null, animation: 'slide_from_bottom'}}
-          name="Clash"
-          component={Clash}
+          options={{header: () => null, animation: 'slide_from_right'}}
+          name="Login"
+          component={Login}
         />
         {/* 
         <SafeAreaView style={s``}>
